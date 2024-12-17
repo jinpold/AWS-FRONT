@@ -1,0 +1,35 @@
+version: "3.2"
+services:
+  database:
+    container_name: demodb-container
+    image: postgres
+    volumes:
+      - ~/docker/mysqldemo/demo/etc/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ~/docker/mysqldemo/demo/var/lib/mysql:/var/lib/mysql
+      - ~/docker/mysqldemo/demo/var/log/mysql:/var/log/mysql
+    environment:
+      - MYSQL_DATABASE=demodb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_HOST=%
+      - TZ = Asia/Seoul
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - db_env
+  application:
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://demodb-container:3306/demodb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    networks:
+      - db_env
+networks:
+  db_env:
+    driver: bridge
