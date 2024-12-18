@@ -35,7 +35,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build --build-arg NEXT_PUBLIC_API_URL="${{ secrets.NEXT_PUBLIC_API_URL }}" \
-                       -t 650251707440.dkr.ecr.ap-northeast-2.amazonaws.com/aws-front:latest .
+                       -t 654654574430.dkr.ecr.ap-northeast-2.amazonaws.com/aws-front:latest .
 
       # 6. Docker 이미지 ECR에 푸시
       - name: Push Docker image to ECR
