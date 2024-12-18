@@ -72,7 +72,7 @@ export default function UserDetailPage({params}:any) {
               </div>
               <div className="w-full flex-1 mt-4">
                 <form className="mx-auto max-w-md flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-                  <input className="block mb-2 text-gray-900 dark:text-white" type="hidden" {...register('id', { required: true })} value={userInfo.id} readOnly />
+                <input type="hidden" {...register('id', { required: true })} value={userInfo.id}/>
                   <div>
                     <label className="block uppercase tracking-wide text-xs font-bold mb-2">Name</label>
                     <input
