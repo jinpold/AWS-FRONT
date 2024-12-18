@@ -26,7 +26,7 @@ export default function UserDetailPage({params}:any) {
   const onSubmit = (data: any) => {
     console.log(JSON.stringify(data));
   
-    data.id = userInfo.userId;
+    // data.id = userInfo.userId;
     dispatch(modifyUserById(data))
       .then((res:any)=>{
         alert('user information modify success.' + res.payload.id)
@@ -39,13 +39,13 @@ export default function UserDetailPage({params}:any) {
 
   
   return (
-    <Card sx={{ padding: '1.5rem', height: 'auto', maxWidth: '600px', margin: 'auto', marginTop: '2rem', borderRadius: '12px', border: '2px solid #003366' }}>
+    <Card sx={{ padding: '1.5rem', height: 'auto', maxWidth: '600px', margin: 'auto', marginTop: '6rem', borderRadius: '12px', border: '2px solid #8B4513' }}>
       <div className="mb-4 text-center">
       </div>
   
       <div className="items-center flex justify-center px-4 lg:px-0 py-4">
         <div className="max-w-screen-lg bg-white border shadow sm:rounded-lg flex justify-center flex-1">
-          <div className="w-1/4 bg-indigo-950 text-center hidden md:flex">
+          <div className="w-1/4 bg-red-950 text-center hidden md:flex">
             <div
               className="m-6 xl:m-8 w-full bg-contain bg-center bg-no-repeat"
               style={{
@@ -55,7 +55,7 @@ export default function UserDetailPage({params}:any) {
           <div className="w-3/4 p-4 sm:p-6">
             <div className="flex flex-col items-center">
               <div className="text-center">
-                <h1 className="text-xl xl:text-2xl font-extrabold text-indigo-950">
+                <h1 className="text-xl xl:text-2xl font-extrabold text-red-950">
                   {MyTypography(jwtDecode<any>(parseCookies().accessToken).username, "1.5rem")}
                   My Page
                 </h1>
@@ -114,20 +114,20 @@ export default function UserDetailPage({params}:any) {
                   </div>
                   <div className="flex justify-between mt-4">
                     <button
-                      className="btn bg-indigo-950 text-gray-100 py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                      className="btn bg-red-950 text-gray-100 py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
                       onClick={() => router.back()}
                       type="button"
                     >
                       CANCEL
                     </button>
                     <button
-                      className="btn bg-indigo-950 text-gray-100 py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                      className="btn bg-red-950 text-gray-100 py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
                       type="submit"
                     >
                       SUBMIT
                     </button>
                     <button
-                      className="btn bg-indigo-950 text-gray-100 py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                      className="btn bg-red-950 text-gray-100 py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
                       onClick={() => {
                         alert("user를 삭제합니다.");
                         console.log("delete user id & username : {}, {}", userInfo.userId, userInfo.username);

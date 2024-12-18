@@ -40,20 +40,22 @@ export default function Join2() {
 
   
     return (
-      <Card sx={{ padding: '1rem', maxWidth: '600px', margin: 'auto', marginTop: '1rem', height:'700px', borderRadius: '12px', border: '2px solid #003366' }}>
+      <Card sx={{ padding: '1rem', maxWidth: '600px', margin: 'auto', marginTop: '7rem', height:'700px', borderRadius: '12px', border: '2px solid #8B4513' }}>
         <div className="min-h-[750px] flex justify-center px-3 lg:px-0 py-5">
           <div className="max-w-screen-xl bg-white border h-full shadow sm:rounded-lg flex justify-center flex-1">
-            <div className="w-1/3 bg-indigo-950 text-center hidden md:flex">
+            <div className="w-1/3 bg-red-950 text-center hidden md:flex"
+              style={{
+                backgroundImage: "url('https://i.namu.wiki/i/Jq3BxfdptAuvp5RMaFlWs1X7NPb6IJCsnQA6sDzqeUrT8gzyWR3unU8hOW3XEfyhpCnG5qSCEDxopRlfgPyiNg.webp')",
+              }}>
               <div
                 className="m-8 xl:m-12 w-full bg-contain bg-center bg-no-repeat"
-                style={{
-                }}
+              
               ></div>
             </div>
             <div className="w-2/3 p-4 sm:p-8">
               <div className="flex flex-col items-center">
                 <div className="text-center">
-                  <h1 className="text-xl xl:text-2xl font-extrabold text-indigo-950">
+                  <h1 className="text-xl xl:text-2xl font-extrabold text-red-950">
                     Sign up
                   </h1>
                   <p className="text-[10px] text-gray-500">
@@ -107,7 +109,7 @@ export default function Join2() {
                      <option value="ISFJ">ISFJ</option>
                      <option value="ESTP">ESTP</option>
                     </select>
-                    <button className="mt-4 tracking-wide font-semibold bg-indigo-950 text-gray-100 w-full py-3 rounded-lg hover:bg-pink-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    <button className="mt-4 tracking-wide font-semibold bg-red-950 text-gray-100 w-full py-3 rounded-lg hover:bg-pink-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     onClick={handleSubmit}>
                       <span className="ml-3">Sign Up</span>
                     </button>

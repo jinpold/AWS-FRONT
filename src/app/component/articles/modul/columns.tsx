@@ -67,7 +67,7 @@ export default function ArticleColumns(): GridColDef[] {
             field: 'delete',
             headerName: 'DELETE',
             renderCell: ({ row }: CellType) =>
-                <button className="btn overflow-hidden relative w-20 h-10 bg-blue-950 text-white rounded-md font-medium uppercase shadow-md transition-transform duration-200 transform hover:scale-105"
+                <button className="btn overflow-hidden relative w-20 h-10 bg-red-950 text-white rounded-md font-medium uppercase shadow-md transition-transform duration-200 transform hover:scale-105"
                     onClick={() => {
                         alert("article을 삭제합니다.")
                         console.log("delete article id : {}", row.id)

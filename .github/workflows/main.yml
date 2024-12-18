@@ -1,15 +1,19 @@
 name: Build and Push Docker image to AWS ECR
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       # 1. 체크아웃 코드
       - name: Checkout code
         uses: actions/checkout@v3
+
       # 2. AWS 자격 증명 설정
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
@@ -17,19 +21,23 @@ jobs:
           aws-access-key-id: ${{ secrets.GIT_AWS_ID }}
           aws-secret-access-key: ${{ secrets.GIT_AWS_KEY }}
           aws-region: ap-northeast-2
+
       # 3. ECR 로그인
       - name: Log in to AWS ECR
         uses: aws-actions/amazon-ecr-login@v1
+
       # 4. .env 파일 생성 (git_env Secret 값으로)
       - name: Create .env file
         run: |
-          echo "${{ secrets.GIT_ENV }}" > .env
+          echo "${{ secrets.git_env }}" > .env
+
       # 5. Docker 이미지 빌드
       - name: Build Docker image
         run: |
           docker build --build-arg NEXT_PUBLIC_API_URL="${{ secrets.NEXT_PUBLIC_API_URL }}" \
-                       -t 654654574430.dkr.ecr.ap-northeast-2.amazonaws.com/aws-front:latest .
+                       -t 650251707440.dkr.ecr.ap-northeast-2.amazonaws.com/aws-front:latest .
+
       # 6. Docker 이미지 ECR에 푸시
       - name: Push Docker image to ECR
         run: |
-          docker push 654654574430.dkr.ecr.ap-northeast-2.amazonaws.com/aws-front:latest
+          docker push 650251707440.dkr.ecr.ap-northeast-2.amazonaws.com/aws-front:latest
