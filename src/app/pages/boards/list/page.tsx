@@ -16,7 +16,7 @@ export default function BoardCards() {
   const allBoards = [
     { id: 1, title: "스터디모집", description: "스터디 모집 게시판 목록으로 갑니다. ", src:"http://43.203.215.218:3000/pages/articles/mylist/1", img: <CallIcon /> },
     { id: 2, title: "Q&A게시판", description: "QnA 게시판 목록으로 갑니다. ", src:"http://43.203.215.218:3000/pages/articles/mylist/2", img: <NewsIcon /> },
-    { id: 3, title: "EDUCATION NEWS", description: "교육 뉴스페이지 목록으로 갑니다 ", src:"http://43.203.215.218:3000/pages/jusik/SE/news", img: <ListIcon /> },
+    { id: 3, title: "NEWS", description: "교육 뉴스페이지 목록으로 갑니다 ", src:"http://43.203.215.218:3000/pages/jusik/SE/news", img: <ListIcon /> },
   ];
 
   useEffect(() => {
