@@ -24,9 +24,9 @@ const UpdateArticlePage:NextPage = () => {
   const [newPost, setNewPost] = useState({} as IArticle)
 
   const options = [
-    {id:1, title:"REVIEW", content: "리뷰게시판"},
+    {id:1, title:"Study", content: "스터디모집 게시판"},
     {id:2, title:"QNA", content: "Q&A게시판"},
-    {id:3, title:"free", content: "자유게시판"},
+    // {id:3, title:"free", content: "자유게시판"},
   ]
 
   const onSubmit = (data:any) => {

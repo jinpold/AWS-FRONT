@@ -18,7 +18,7 @@ const NewsPage: React.FC = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/news/list'); 
+        const response = await axios.get('http://3.35.13.12:8080/api/news/list'); 
         console.log(response.data); 
         setNews(response.data);
       } catch (error) {

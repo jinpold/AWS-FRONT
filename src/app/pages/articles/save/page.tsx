@@ -24,7 +24,7 @@ const WriterArticlePage: NextPage = () => {
   const [newPost, setNewPost] = useState({} as IArticle);
 
   const options = [
-    { id: 1, title: "REVIEW", content: "고객센터" },
+    { id: 1, title: "Study", content: "스터디모집 게시판" },
     { id: 2, title: "QNA", content: "Q&A게시판" },
   ];
 
