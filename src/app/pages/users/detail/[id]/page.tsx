@@ -18,10 +18,11 @@ export default function UserDetailPage({ params }: any) {
   // 유저 데이터 불러오기
   const user: IUser = useSelector(getAllUsers).find((user: IUser) => user.id === params.id);
   const userInfo = jwtDecode<any>(parseCookies().accessToken);
+  console.log("Decoded Token:", parseCookies().accessToken);
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      id: userInfo.id, // 기본값 설정
+      id: userInfo.userId, // 기본값 설정
       name: user?.name || "",
       password: "",
       address: user?.address || "",
@@ -71,7 +72,7 @@ export default function UserDetailPage({ params }: any) {
               <div className="w-full flex-1 mt-4">
                 <form className="mx-auto max-w-md flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
                   {/* Hidden ID */}
-                  <input type="hidden" {...register("id")} />
+                  <input type="hidden" {...register("id", { required: true })} />
 
                   <div>
                     <label className="block uppercase tracking-wide text-xs font-bold mb-2">Name</label>
