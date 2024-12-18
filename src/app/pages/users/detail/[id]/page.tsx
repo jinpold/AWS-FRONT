@@ -24,8 +24,10 @@ export default function UserDetailPage({params}:any) {
   const userInfo = jwtDecode<any>(parseCookies().accessToken);
 
   const onSubmit = (data: any) => {
+    console.log("Submit Data:", JSON.stringify(data)); // 전송될 데이터 확인
+  
     const payload = {
-      id: userInfo.id, // id를 포함시켜 전송
+      id: data.id, // id 값 포함
       name: data.name,
       password: data.password,
       address: data.address,
@@ -70,7 +72,7 @@ export default function UserDetailPage({params}:any) {
               </div>
               <div className="w-full flex-1 mt-4">
                 <form className="mx-auto max-w-md flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-                  <input className="block mb-2 text-gray-900 dark:text-white" type="hidden" value={userInfo.id} readOnly />
+                  <input className="block mb-2 text-gray-900 dark:text-white" type="hidden" {...register('id', { required: true })} value={userInfo.id} readOnly />
                   <div>
                     <label className="block uppercase tracking-wide text-xs font-bold mb-2">Name</label>
                     <input
