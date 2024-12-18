@@ -11,12 +11,9 @@ export default function SeChartPage() {
     useEffect(() => {
 
     }, [dispatch])
-
-
     return (<>
         <div className="">
         SeChartPage
         </div>
-
     </>)
 }

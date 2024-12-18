@@ -12,7 +12,7 @@ import { existsByUsername, loginUser } from "@/app/component/users/service/user.
 import { PG } from "@/app/component/common/enums/PG";
 import { NextPage } from "next"
 
-const SERVER = 'http://localhost:8080'
+const SERVER = 'http://3.35.13.12:8080'
 
 const Login: NextPage = () => {
 
