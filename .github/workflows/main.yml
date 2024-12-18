@@ -29,7 +29,7 @@ jobs:
       # 4. .env 파일 생성 (git_env Secret 값으로)
       - name: Create .env file
         run: |
-          echo "${{ secrets.GIT_ENV }}" > .env
+          echo "${{ secrets.GIT_ENV }}" | sed "s/'//g" > .env
 
       # 5. Docker 이미지 빌드
       - name: Build Docker image
