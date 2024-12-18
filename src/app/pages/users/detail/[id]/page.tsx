@@ -24,18 +24,25 @@ export default function UserDetailPage({params}:any) {
   const userInfo = jwtDecode<any>(parseCookies().accessToken);
 
   const onSubmit = (data: any) => {
-    console.log(JSON.stringify(data));
+    const payload = {
+      id: userInfo.id, // id를 포함시켜 전송
+      name: data.name,
+      password: data.password,
+      address: data.address,
+      phone: data.phone,
+    };
   
-    // data.id = userInfo.userId;
-    dispatch(modifyUserById(data))
-      .then((res:any)=>{
-        alert('user information modify success.' + res.payload.id)
+    console.log("Payload to submit:", JSON.stringify(payload));
+    dispatch(modifyUserById(payload))
+      .then((res: any) => {
+        alert('User information modified successfully. ID: ' + res.payload.id);
         location.reload();
       })
-      .catch((error:any)=>{
-        alert('user information modify fail.')
-      })
-  }
+      .catch((error: any) => {
+        alert('User information modify failed.');
+        console.error("Error:", error);
+      });
+  };
 
   
   return (
