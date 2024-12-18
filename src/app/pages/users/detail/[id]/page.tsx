@@ -48,7 +48,7 @@ export default function UserDetailPage({ params }: any) {
   // 삭제 요청
   const handleDelete = () => {
     alert("User를 삭제합니다.");
-    dispatch(deleteUserById(userInfo.id))
+    dispatch(deleteUserById(userInfo.userId))
       .then(() => location.reload())
       .catch((error:any) => console.error("Error deleting user:", error));
   };
