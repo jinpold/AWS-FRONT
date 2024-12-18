@@ -24,27 +24,18 @@ export default function UserDetailPage({params}:any) {
   const userInfo = jwtDecode<any>(parseCookies().accessToken);
 
   const onSubmit = (data: any) => {
-    console.log("Submit Data:", JSON.stringify(data)); // 전송될 데이터 확인
+    console.log(JSON.stringify(data));
   
-    const payload = {
-      id: data.id, // id 값 포함
-      name: data.name,
-      password: data.password,
-      address: data.address,
-      phone: data.phone,
-    };
-  
-    console.log("Payload to submit:", JSON.stringify(payload));
-    dispatch(modifyUserById(payload))
-      .then((res: any) => {
-        alert('User information modified successfully. ID: ' + res.payload.id);
+    // data.id = userInfo.userId;
+    dispatch(modifyUserById(data))
+      .then((res:any)=>{
+        alert('user information modify success.' + res.payload.id)
         location.reload();
       })
-      .catch((error: any) => {
-        alert('User information modify failed.');
-        console.error("Error:", error);
-      });
-  };
+      .catch((error:any)=>{
+        alert('user information modify fail.')
+      })
+  }
 
   
   return (
@@ -72,7 +63,7 @@ export default function UserDetailPage({params}:any) {
               </div>
               <div className="w-full flex-1 mt-4">
                 <form className="mx-auto max-w-md flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-                <input type="hidden" {...register('id', { required: true })} value={userInfo.id}/>
+                  <input className="block mb-2 text-gray-900 dark:text-white" type="hidden" value={userInfo.id} readOnly />
                   <div>
                     <label className="block uppercase tracking-wide text-xs font-bold mb-2">Name</label>
                     <input
