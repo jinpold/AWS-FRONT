@@ -7,7 +7,7 @@ import { destroyCookie, parseCookies } from 'nookies';
 import { useDispatch, useSelector } from "react-redux";
 import { findUserById, logout } from '../../users/service/user.service';
 import { jwtDecode } from 'jwt-decode';
-import { setToken, clearToken } from  '../../users/service/user.slice';
+import { setToken, clearToken } from '../../users/service/user.slice';
 
 function Header() {
   const [showProfile, setShowProfile] = useState(false);
@@ -15,6 +15,7 @@ function Header() {
   const router = useRouter();
   const token = useSelector((state: any) => state.user.auth?.Token);
 
+  // 환경변수로부터 프론트엔드 URL 가져오기
   const frontendUrl = process.env.NEXT_PUBLIC_API_URL2;
 
   useEffect(() => {
@@ -43,7 +44,8 @@ function Header() {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <HomeIcon fontSize="large" onClick={() => router.push(`/`)} />
+        {/* Home 버튼 */}
+        <HomeIcon fontSize="large" onClick={() => router.push(`${frontendUrl}/`)} />
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {showProfile ? (
             <button
@@ -59,13 +61,13 @@ function Header() {
                 className="w-20 h-20 rounded-full"
                 src="/img/user/profile.jpg"
                 data-popover-target="profile-menu"
-                onClick={() => router.push(`/`)}
+                onClick={() => router.push(`${frontendUrl}/`)}
               />
             </button>
           ) : (
             <button
               type="button"
-              onClick={() => router.push(`http://ctec-alb-702107075.ap-northeast-2.elb.amazonaws.com:3000/pages/users/login`)}
+              onClick={() => router.push(`${frontendUrl}/pages/users/login`)}
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
             >
               Login
@@ -95,7 +97,7 @@ function Header() {
             {showProfile &&
               linkButtonTitles.map((elem) => (
                 <ul key={elem.id}>
-                  <LinkButton id={elem.id} title={elem.title} path={elem.path} />
+                  <LinkButton id={elem.id} title={elem.title} path={`${frontendUrl}${elem.path}`} />
                 </ul>
               ))}
           </ul>
@@ -104,4 +106,5 @@ function Header() {
     </nav>
   );
 }
+
 export default Header;
