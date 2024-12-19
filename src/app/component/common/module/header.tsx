@@ -9,11 +9,15 @@ import { findUserById, logout } from '../../users/service/user.service';
 import { jwtDecode } from 'jwt-decode';
 import { setToken, clearToken } from  '../../users/service/user.slice';
 
+
+
 function Header() {
   const [showProfile, setShowProfile] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector((state: any) => state.user.auth?.Token);
+
+  const frontendUrl = process.env.NEXT_PUBLIC_API_URL2;
 
   useEffect(() => {
     const cookies = parseCookies();
