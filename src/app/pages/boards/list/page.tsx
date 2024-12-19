@@ -16,7 +16,7 @@ export default function BoardCards() {
   const dispatch = useDispatch();
 
   const frontendUrl = process.env.NEXT_PUBLIC_API_URL2;
-
+  console.log('Frontend URL:', frontendUrl); // 디버깅용
 
 
   const allBoards = [
