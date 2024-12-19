@@ -9,8 +9,6 @@ import { findUserById, logout } from '../../users/service/user.service';
 import { jwtDecode } from 'jwt-decode';
 import { setToken, clearToken } from  '../../users/service/user.slice';
 
-
-
 function Header() {
   const [showProfile, setShowProfile] = useState(false);
   const dispatch = useDispatch();
