@@ -4,40 +4,38 @@ import { useRouter } from "next/navigation";
 import HomeIcon from '@mui/icons-material/Home';
 import LinkButton, { linkButtonTitles } from '@/app/atoms/button/LinkButton';
 import { destroyCookie, parseCookies } from 'nookies';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { findUserById, logout } from '../../users/service/user.service';
 import { jwtDecode } from 'jwt-decode';
-
+import { setToken, clearToken } from  '../../users/service/user.slice';
 
 function Header() {
   const [showProfile, setShowProfile] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
-  let token = "";
+  const token = useSelector((state: any) => state.user.auth?.Token);
 
   useEffect(() => {
     const cookies = parseCookies();
     if (cookies.accessToken) {
-      setShowProfile(true);
-      token = cookies.accessToken;
-      dispatch(findUserById(jwtDecode<any>(token).userId));
-    } else {
-      setShowProfile(false);
+      dispatch(setToken(cookies.accessToken)); // 토큰 저장
+      dispatch(findUserById(jwtDecode<any>(cookies.accessToken).userId)); // 사용자 정보 로드
     }
   }, []);
 
-  const logoutHandler = () => {
-    console.log('logout 적용 전' + parseCookies().accessToken);
-    dispatch(logout())
-      .then((res:any) => {
-        destroyCookie(null, 'accessToken');
-        setShowProfile(false);
-        token = "";
-        location.replace('/');
-      })
-      .catch((err:any) => {
-        console.log('header : logout error' + err);
-      });
+  useEffect(() => {
+    setShowProfile(!!token);
+  }, [token]);
+
+  const logoutHandler = async () => {
+    try {
+      await dispatch(logout());
+      destroyCookie(null, 'accessToken');
+      dispatch(clearToken());
+      router.replace('/');
+    } catch (err) {
+      console.error('header: logout error', err);
+    }
   };
 
   return (

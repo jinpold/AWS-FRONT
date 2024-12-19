@@ -119,14 +119,14 @@ const Login: NextPage = () => {
                     required
                   />
           
-                  {len === false ?
+                  {/* {len === false ?
                     user.username?.length === 0 || user.username === undefined ? <pre></pre> :
                       (isWrongId === 'true' ?
                         (<pre><h6 className='text-red-500'>* Wrong username form.</h6></pre>) :
                         (<pre><h6 className='text-green-500'>* good username form.</h6></pre>)
                       )
                     : <pre><h6 className='text-red-500'>{msg}</h6></pre>
-                  }
+                  } */}
                 </div>
                 <div className="mt-4 flex flex-col justify-between">
                   <div className="flex justify-between">
@@ -143,14 +143,14 @@ const Login: NextPage = () => {
                     ref={formRef}
                   />
           
-                  {user.password?.length === 0 || user.password === undefined ? <pre></pre> :
+                  {/* {user.password?.length === 0 || user.password === undefined ? <pre></pre> :
                     (isWrongPw === 'true' ?
                       user.password.length > 15 ?
                         (<pre><h6 className='text-orange-500'>* password가 15자를 넘었습니다..</h6></pre>) :
                         (<pre><h6 className='text-red-500'>* Wrong password form.<br />영어 소문자, 대문자, #?!@$ %^&*- 포함<br />6자이상 </h6></pre>) :
                       (<pre><h6 className='text-green-500'>* good password form.</h6></pre>)
                     )
-                  }
+                  } */}
           
                   <a
                     href="#"

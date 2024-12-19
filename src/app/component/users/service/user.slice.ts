@@ -33,7 +33,17 @@ export const initialState:userState = {
 export const userSlice = createSlice({
     name: "users",
     initialState,
-    reducers: {},
+    reducers: { 
+        setToken(state, action) {
+            state.auth = { ...state.auth, Token: action.payload }; // 토큰 저장
+        },
+        
+        
+        clearToken(state) {
+        state.auth = {}; // 인증 상태 초기화
+        state.json = {username: "", password: ""}; // 사용자 정보 초기화
+    },},
+   
     extraReducers: builder => {
         const { pending, rejected } = status;
         builder
@@ -45,6 +55,7 @@ export const userSlice = createSlice({
             .addCase(loginUser.fulfilled, (state: any, { payload }: any) => { state.auth = payload })
             .addCase(joinUser.fulfilled, (state: any, { payload }: any) => { state.json = payload })
             .addCase(existsByUsername.fulfilled, (state: any, { payload }: any) => { state.text = payload })
+            .addCase(logout.fulfilled, (state: any, { payload }: any) => { state.json = payload })
     }
 })
 
@@ -53,7 +64,7 @@ export const getSingleUser = (state: any) => state.user.json;
 export const getCountUser = (state: any) => state.user.count;
 export const getAuth = (state: any) => state.user.auth;
 export const getflag = (state: any) => state.user.text;
+export const getLogout = (state: any) => state.user.json;
 
-export const { } = userSlice.actions
-
+export const { setToken, clearToken } = userSlice.actions;
 export default userSlice.reducer;
