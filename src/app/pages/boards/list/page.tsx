@@ -15,6 +15,7 @@ export default function BoardCards() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const frontendUrl = process.env.NEXT_PUBLIC_API_URL2;
 
 
 
